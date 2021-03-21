@@ -16,11 +16,11 @@ def emptyMatrix(seq1: str, seq2: str) -> list:
 
 
 '''This function defines the type of alignment:
-    the extra gaps are all zeros for the local one (extra_gap=0), set by default;
-    the extra gaps sum on top of each other for the global one (extra_gap=value)'''
+    the extra gaps are all zeros for the local one (extra_gap=0);
+    the extra gaps sum on top of each other for the global one (extra_gap=integer)'''
 
-def typeMatrix(seq1: str, seq2: str, extra_gap: int) -> list:
-    M = emptyMatrix(seq1, seq2)
+def typeMatrix( seq1: str, seq2: str, extra_gap: int) -> list:
+    M = emptyMatrix(seq1, seq2)  # create the skeleton
     start = 0
     for column in range(len(seq1) + 1):
         M[1].append(start)
@@ -52,9 +52,13 @@ def get_max(diag: int, up: int, left: int) -> str:
         return 'LEFT'
 
 
+'''This function returns a tuple containing the matrix filled with all the scores,
+    the coordinates of the cell with highest value (needed for the local implementation)
+    and the matrix storing all the mooves to reach a certain cell'''
+
 def fillMatrix(seq1: str, seq2: str, gap: int, extra_gap: int, m: int) -> tuple:
     coordinates = (0, 0)  # default value
-    Matrix = typeMatrix(seq1, seq2, extra_gap)      # numerical matrix
+    Matrix = typeMatrix(seq1, seq2, extra_gap)       # numerical matrix
     ParalMatrix = typeMatrix(seq1, seq2, extra_gap)  # backtracking matrix
     i = 2
     best_value = 0
@@ -67,48 +71,48 @@ def fillMatrix(seq1: str, seq2: str, gap: int, extra_gap: int, m: int) -> tuple:
             up = Matrix[i - 1][j] + gap
             left = row[j - 1] + gap
 
-            cell_value = max(diag, up, left)  # in case of a tie for the highest value the first one is chosen
+            cell_value = max(diag, up, left)    # in case of a tie for the highest value the first one is chosen
             paralcel = get_max(diag, up, left)  # this cell keeps track of the moves in the backtracking matrix
 
-            Matrix[i].append(cell_value)    # append the new cell to the current row
-            ParalMatrix[i].append(paralcel) # storing the moove to reach the current cell
+            Matrix[i].append(cell_value)     # append the new cell to the current row
+            ParalMatrix[i].append(paralcel)  # storing the move to reach the current cell
 
-            if cell_value >= best_value:  # feature needed to implement local optimal alignment, we save the coordinates of the highest cell value
+            if cell_value >= best_value:    # feature needed to implement local optimal alignment, it saves the coordinates of the highest-value cell
                 best_value = cell_value
                 coordinates = (i, j)
 
-            j += 1  # moove to the next cell on the same row
-        i += 1      # moove to the next row
+            j += 1  # move to the next cell on the same row
+        i += 1      # move to the next row
 
-    return (Matrix, coordinates, ParalMatrix) # this tuple contains all the info for the backtacking function
+    return (Matrix, coordinates, ParalMatrix)  # this tuple contains all the info for the backtracking function
 
 
 '''The following functions allow to visualize graphically the matrixes,
     not actually functional to the algorithm but it's helpful in the testing'''
 
-def SHOW(M):
+'''Prints the matrix containing all the values'''
+
+def SHOW(M):  # .fillMatrix() as parameter
     for i in M[0]:
         print(i)
     print('highest cell coordinates :' + str(M[1]))
 
+'''Prints the matrix storing all the mooves'''
 
-def SHOWparal(M):
+def SHOWparallel(M):  # .fillMatrix() as parameter
     for i in M[2]:
         print(i)
 
 
-'''This section of the file interacts with the user'''
 if __name__ == '__main__':
-    '''Below are reported some biological sequences suitable for testing the algorithms'''
 
-    # >XM_019013136.2 PREDICTED: Gorilla gorilla gorilla tumor protein p53 (TP53), transcript variant X1, mRNA (1:80 nts)
-    GorillaP53 = 'GAATTAAAATAGGATGACTTAAAGTCTGCACGGGAAGGAGCCTACCCCCATGTTCCTGGCTAGCCAAGGAACCACCAGTT'
+    # seq1 = 'xxxxx'
+    # seq2 = 'yyyyy'
+    # gap = negative value
+    # extra_gap = negative value or 0 according to the type of alignment
+    # score = absolute value of match and mismatch
 
-    # >NM_000546.6 Homo sapiens tumor protein p53 (TP53), transcript variant 1, mRNA(1:80 nts)
-    HumnaP53 = 'CTCAAAAGTCTAGAGCCACCGTCCAGGGAGCAGGTAGCTGCTGGGCTCCGGGGACACTTTGCGTTCGGGCTGGGAGCGTG'
+    '''call these functions to print the matrixes'''
 
-    A = emptyMatrix('ABCD', 'ABCD')
-    a = typeMatrix('ABCDE', 'ABCDE', -2)
-    fullM = fillMatrix('t', 'AA', -2, -2, 1)
-    SHOW(fullM)
-    # SHOWparal(fullM)
+    #SHOW(fillMatrix(seq1,seq2,gap,extra_gap,score))
+    #SHOWparallel(fillMatrix(seq1,seq1,gap,extra_gap,score))
