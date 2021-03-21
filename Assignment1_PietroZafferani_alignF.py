@@ -1,7 +1,8 @@
 '''Designing an algorithm for The Optimal Sequences Alignment'''
-from Assignment1_PietroZafferani_Matrixes2 import *
+from Assignment1_PietroZafferani_MatrixesF import *
 
 '''In the final alignment the mismatches will be displayed in lowercase and the matches in uppercase '''
+
 def mismatch(a: str, b: str) -> tuple:
     if a != b:
         return (a.lower(), b.lower())
@@ -10,6 +11,7 @@ def mismatch(a: str, b: str) -> tuple:
 
 
 '''Adds insertions in one of the 2 sequences aligned'''
+
 def Indels() -> str:
     return '-'
 
@@ -109,32 +111,36 @@ def Local(seq1: str, seq2: str, gap: int, m: int) -> tuple:
     Backtrack = Matrixes[2]
     return Local_backtracking(Backtrack, Mnumbers, coordinates[0], coordinates[1])
 
+
 '''This function iterates over the tuple containing the two sequences(reversed) and prints them one
     on top of each other'''
 
-def PrintAlignement(aligned_tuple: tuple) -> print:
+def PrintAlignment(aligned_tuple: tuple) -> print:
     for sequence in aligned_tuple:
         print(sequence[::-1])
 
 
+'''This is the only function that must be called to interact with the system'''
+
+def MAIN():
+    seq1 = input('Please type in the first sequence you would like to align: '+'\n')
+    seq2 = input('Please type in the second sequence you would like to align: '+'\n')
+    type = input('What kind of alignment would you like to perform:(GLOBAL/LOCAL) '+'\n')
+    gap = input('Please select the score assigned to gaps: '+'\n')
+    score= input('Please select the score assigned to a match of characters: '+'\n')
+
+    print('\n' + type.upper() + ' alignment:' + '\n')
+    if type.upper() == 'GLOBAL':
+        result = Global( str(seq1), str(seq2), int(gap), int(score))
+        PrintAlignment(result)
+
+    else:
+        result = Local( str(seq1), str(seq2), int(gap), int(score))
+        PrintAlignment(result)
+
+
 ''''This section of the file is designed to be the only interacting part with the user'''
+
 if __name__ == '__main__':
 
-    # >XM_019013136.2 PREDICTED: Gorilla gorilla gorilla tumor protein p53 (TP53), transcript variant X1, mRNA (1:80 nts)
-    GorillaP53 = 'GAATTAAAATAGGATGACTTAAAGTCTGCACGGGAAGGAGCCTACCCCCATGTTCCTGGCTAGCCAAGGAACCACCAGTT'
-
-    # >NM_000546.6 Homo sapiens tumor protein p53 (TP53), transcript variant 1, mRNA(1:80 nts)
-    HumanP53 = 'CTCAAAAGTCTAGAGCCACCGTCCAGGGAGCAGGTAGCTGCTGGGCTCCGGGGACACTTTGCGTTCGGGCTGGGAGCGTG'
-
-    # print(mismatch('a','a'))
-    # fullM = fillMatrix(GorillaP53,HumnaP53, -2, 0, 1)
-    # SHOW(fullM)
-    # SHOWparal(fullM)
-    s = fillMatrix('AGAGGAGTATTTAGGGCC', 'GGAGGTATTTAGCCGC', -2, 0, 1)
-    k = Global('agagagaggttttttttttttttt', 'ddddgggtttttttttd', -2, 1)
-    j = Local('AATTTAffffffffCTC', 'ATTdddddddADTA', -2, 1)
-    l = Local(GorillaP53, HumanP53, -2, 1)
-    g = Global(GorillaP53, HumanP53, -2, 1)
-    PrintAlignement(k)
-   # SHOW(s)
-    #SHOWparal(s)
+    MAIN()
