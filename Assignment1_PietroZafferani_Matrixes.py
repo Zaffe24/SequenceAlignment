@@ -1,4 +1,6 @@
-'''Designing an algorithm for The Optimal Sequences Alignment'''
+''' Implementing The Needleman & Wunsh and The Smith & Waterman algorithms for The Optimal Sequences Alignment '''
+    # by Pietro Zafferani, Genomics
+
 '''This module implements functions to create and to handle alignment matrix and the backtracking one'''
 
 '''This function creates the skeleton of the alignment matrix, only the columns and rows indexes are present.'''

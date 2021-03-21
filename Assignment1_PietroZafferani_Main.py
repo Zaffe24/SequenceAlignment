@@ -1,4 +1,6 @@
-''' Designing an algorithm for The Optimal Sequences Alignment '''
+''' Implementing The Needleman & Wunsh and The Smith & Waterman algorithms for The Optimal Sequences Alignment '''
+    # by Pietro Zafferani, Genomics
+
 '''This module implements the functions for the backtracking and for printing the alignment'''
 
 from Assignment1_PietroZafferani_Matrixes import *
@@ -103,7 +105,7 @@ def Local_backtracking(Mparal: list, Mnumbers: list, coordinate1: int, coordinat
         return Local_backtracking(Mparal, Mnumbers, coordinate1 - 1, coordinate2, x, y)
 
     elif Mparal[coordinate1][coordinate2] == 'LEFT':  # recursion in horizontal
-        x += M[0][coordinate2].upper()
+        x += Mparal[0][coordinate2].upper()
         y += Indels()
         return Local_backtracking(Mparal, Mnumbers, coordinate1, coordinate2 - 1, x, y)
 
