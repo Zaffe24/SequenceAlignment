@@ -131,7 +131,7 @@ def PrintAlignment(aligned_tuple: tuple) -> print:
 
 '''This is the only function that the user must be call to interact with the system'''
 
-def MAIN()-> print:
+def MAIN() -> print:
     seq1 = input('Please type in the first sequence you would like to align: '+'\n')
     seq2 = input('Please type in the second sequence you would like to align: '+'\n')
     type = input('What kind of alignment would you like to perform:(select GLOBAL/LOCAL) '+'\n')
@@ -163,7 +163,8 @@ if __name__ == '__main__':
     'MGLSDGEWQLVLNVWGKVEADVAGHGQEVLIRLFKGHPETLEKFDKFKHLKSEDEMKASEDLKKHGNTVLTALGGILKKKGHHEAELTPLAQSHATKHKIPVKYLEFISEAIIQVLQSKHPGDFGADAQGAMSKALELFRNDMAAKYKELGFQG'
 
 
-    #NB: the quotation marks '' are not needed when typing the input;
-       # only letters are valid as the argument of the aligment
+    # NB: the quotation marks '' are not needed when typing the input;
+        # null inputs are not handled by the system
+        # only letters are valid as the argument of the aligment
 
     MAIN()

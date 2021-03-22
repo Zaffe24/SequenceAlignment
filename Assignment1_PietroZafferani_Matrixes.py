@@ -3,7 +3,7 @@
 
 '''This module implements functions to create and to handle alignment matrix and the backtracking one'''
 
-'''This function creates the skeleton of the alignment matrix, only the columns and rows indexes are present.'''
+'''This function creates the skeleton of the both matrixes, only the columns and rows indexes are present.'''
 
 def emptyMatrix(seq1: str, seq2: str) -> list:
     Matrix = [['/', '/']]  # extra null column
@@ -39,7 +39,7 @@ def typeMatrix( seq1: str, seq2: str, extra_gap: int) -> list:
 
 '''function used to determine the score of matches/mismatches'''
 
-def match(i, j, n: int):
+def match(i, j, n: int) -> int:
     return n if i == j else -n
 
 
@@ -94,14 +94,15 @@ def fillMatrix(seq1: str, seq2: str, gap: int, extra_gap: int, m: int) -> tuple:
 
 '''Prints the matrix containing all the values'''
 
-def SHOW(M):  # .fillMatrix() as parameter
+def SHOW(M) -> print:  # .fillMatrix() as parameter
     for i in M[0]:
         print(i)
     print('highest cell coordinates :' + str(M[1]))
 
-'''Prints the matrix storing all the mooves'''
 
-def SHOWparallel(M):  # .fillMatrix() as parameter
+'''Prints the matrix storing all the moves'''
+
+def SHOWparallel(M) -> print:  # .fillMatrix() as parameter
     for i in M[2]:
         print(i)
 
@@ -116,5 +117,5 @@ if __name__ == '__main__':
 
     '''call these functions to print the matrixes'''
 
-    #SHOW(fillMatrix(seq1,seq2,gap,extra_gap,score))
     #SHOWparallel(fillMatrix(seq1,seq1,gap,extra_gap,score))
+    #SHOW(fillMatrix(seq1,seq1,gap,extra_gap,score))
