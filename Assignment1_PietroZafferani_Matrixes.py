@@ -109,13 +109,14 @@ def SHOWparallel(M) -> print:  # .fillMatrix() as parameter
 
 if __name__ == '__main__':
 
-    # seq1 = 'xxxxx'
-    # seq2 = 'yyyyy'
-    # gap = negative value
-    # extra_gap = negative value or 0 according to the type of alignment
-    # score = absolute value of match and mismatch
+    seq1 = 'xxxxx'
+    seq2 = 'yxyvvvvvvvvvvvvvvvvxy'
+    gap = -2 #negative value
+    extra_gap = -2 #negative value or 0 according to the type of alignment
+    score = 1 #absolute value of match and mismatch
 
     '''call these functions to print the matrixes'''
 
-    #SHOWparallel(fillMatrix(seq1,seq1,gap,extra_gap,score))
-    #SHOW(fillMatrix(seq1,seq1,gap,extra_gap,score))
+    SHOWparallel(fillMatrix(seq1,seq2,gap,extra_gap,score))
+    print()
+    SHOW(fillMatrix(seq1,seq2,gap,extra_gap,score))
