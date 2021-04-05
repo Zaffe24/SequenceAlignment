@@ -59,7 +59,7 @@ def get_max(diag: int, up: int, left: int) -> str:
     and the matrix storing all the mooves to reach a certain cell'''
 
 def fillMatrix(seq1: str, seq2: str, gap: int, extra_gap: int, m: int) -> tuple:
-    coordinates = (0, 0)  # default value
+    coordinates = (1, 1)  # default value in case there is no a positive cell's value in the whole matrix
     Matrix = typeMatrix(seq1, seq2, extra_gap)       # numerical matrix
     ParalMatrix = typeMatrix(seq1, seq2, extra_gap)  # backtracking matrix
     i = 2
@@ -109,14 +109,14 @@ def SHOWparallel(M) -> print:  # .fillMatrix() as parameter
 
 if __name__ == '__main__':
 
-    seq1 = 'xxxxx'
-    seq2 = 'yxyvvvvvvvvvvvvvvvvxy'
-    gap = -2 #negative value
-    extra_gap = -2 #negative value or 0 according to the type of alignment
-    score = 1 #absolute value of match and mismatch
+    #seq1 = 'xxxxx'
+    #seq2 = 'vvvvvvvvvvvvvvvv'
+    #gap = -2 #negative value
+    #extra_gap = 0 #negative value or 0 according to the type of alignment
+    #score = 1 #absolute value of match and mismatch
 
     '''call these functions to print the matrixes'''
 
-    SHOWparallel(fillMatrix(seq1,seq2,gap,extra_gap,score))
-    print()
-    SHOW(fillMatrix(seq1,seq2,gap,extra_gap,score))
+    #SHOWparallel(fillMatrix(seq1,seq2,gap,extra_gap,score))
+    #print()
+    #SHOW(fillMatrix(seq1,seq2,gap,extra_gap,score))

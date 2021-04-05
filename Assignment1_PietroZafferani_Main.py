@@ -125,9 +125,11 @@ def Local(seq1: str, seq2: str, gap: int, m: int) -> tuple:
     on top of each other'''
 
 def PrintAlignment(aligned_tuple: tuple) -> print:
+    
     for sequence in aligned_tuple:
         print(sequence[::-1])   # the strings were created in the opposite sense
-
+     
+   
 
 '''This is the only function that the user must be call to interact with the system'''
 
